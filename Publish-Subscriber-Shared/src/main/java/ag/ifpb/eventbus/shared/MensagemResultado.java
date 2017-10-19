@@ -2,34 +2,35 @@ package ag.ifpb.eventbus.shared;
 
 import java.io.Serializable;
 
-/**
- * @Date  09/10/2017 @Time 13:46:24
- * @author Wellington Lins Claudino Duarte   
- * @mail wellingtonlins2013@gmail.com
- */ 
-public class Mensagem implements Serializable{
+@SuppressWarnings("serial")
+public class MensagemResultado implements Serializable {
 
     private String id;
+    private String hash;
     private String conteudo;
     private Usuario origem;
-    private Grupo canal;
-
-    public Mensagem() {
+    private String canal;
+    
+    public MensagemResultado() {
     }
 
-    public Mensagem(String id, String conteudo, Usuario origem, Grupo canal) {
+    public MensagemResultado(String id, String hash, String conteudo, Usuario origem, String canal) {
         this.id = id;
+        this.hash = hash;
         this.conteudo = conteudo;
         this.origem = origem;
         this.canal = canal;
     }
 
+ 
+
+
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getHash() {
+        return hash;
     }
 
     public String getConteudo() {
@@ -48,23 +49,18 @@ public class Mensagem implements Serializable{
         this.origem = origem;
     }
 
-    public Grupo getGrupo() {
+    public String getCanal() {
         return canal;
     }
 
-    public void setGrupo(Grupo canal) {
+    public void setCanal(String canal) {
         this.canal = canal;
     }
 
-  
-
-//    @Override
-//    public String toString() {
-//        return conteudo + " :: " + origem.getNome() + " ==> " + canal ;
-//    }
     @Override
     public String toString() {
-        return origem.getNome() + " ==> " + canal + " :: " + conteudo ;
+        return "MessageResult{" + "id=" + id + ", hash=" + hash + ", conteudo=" + conteudo + ", origem=" + origem + ", canal=" + canal + '}';
     }
-    
+
+
 }

@@ -15,5 +15,6 @@ public abstract class ListenerImpl extends UnicastRemoteObject implements Listen
 	//vai dizer o que este métodos vai fazer
 	@Override
 	public abstract void onEvent(Mensagem mensagem) throws RemoteException;
+        
 
 }
