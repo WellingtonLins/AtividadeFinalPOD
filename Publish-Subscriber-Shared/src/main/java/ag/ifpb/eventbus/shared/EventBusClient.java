@@ -1,4 +1,4 @@
-package ag.ifpb.eventbus.teste;
+package ag.ifpb.eventbus.shared;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -15,8 +15,8 @@ public class EventBusClient implements EventBus {
     private final EventBus eventBus;
 
     public EventBusClient() throws RemoteException, NotBoundException {
-        this.registry = LocateRegistry.getRegistry(10990);
-        eventBus = (EventBus) registry.lookup("Sender");
+        this.registry = LocateRegistry.getRegistry(10992);
+        eventBus = (EventBus) registry.lookup("EventBus");
     }
 
     @Override

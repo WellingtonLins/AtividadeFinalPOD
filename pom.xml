@@ -10,6 +10,7 @@
         <module>Publish-Subscriber-Servidor</module>
         <module>Publish-Subscriber-Shared</module>
         <module>Publish-Subscriber-Sender</module>
+        <module>Publish-Subscriber-Receiver</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

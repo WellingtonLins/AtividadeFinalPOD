@@ -9,17 +9,17 @@ public class MensagemResultado implements Serializable {
     private String hash;
     private String conteudo;
     private Usuario origem;
-    private String canal;
+    private Grupo grupo;
     
     public MensagemResultado() {
     }
 
-    public MensagemResultado(String id, String hash, String conteudo, Usuario origem, String canal) {
+    public MensagemResultado(String id, String hash, String conteudo, Usuario origem, Grupo canal) {
         this.id = id;
         this.hash = hash;
         this.conteudo = conteudo;
         this.origem = origem;
-        this.canal = canal;
+        this.grupo = canal;
     }
 
  
@@ -49,17 +49,17 @@ public class MensagemResultado implements Serializable {
         this.origem = origem;
     }
 
-    public String getCanal() {
-        return canal;
+    public Grupo getGrupo() {
+        return grupo;
     }
 
-    public void setCanal(String canal) {
-        this.canal = canal;
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
     }
 
     @Override
     public String toString() {
-        return "MessageResult{" + "id=" + id + ", hash=" + hash + ", conteudo=" + conteudo + ", origem=" + origem + ", canal=" + canal + '}';
+        return "MessageResult{" + "id=" + id + ", hash=" + hash + ", conteudo=" + conteudo + ", origem=" + origem + ", canal=" + grupo + '}';
     }
 
 

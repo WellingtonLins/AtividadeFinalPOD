@@ -1,5 +1,6 @@
-package ag.ifpb.eventbus.teste;
+package ifpb.receiver.pull;
 
+import ag.ifpb.eventbus.shared.EventBusClient;
 import ag.ifpb.eventbus.shared.EventBus;
 import ag.ifpb.eventbus.shared.Grupo;
 import ag.ifpb.eventbus.shared.Mensagem;
@@ -15,18 +16,15 @@ import java.rmi.RemoteException;
  */ 
 public class GerenciadorDeMensagem {
 
-     public static void encaminhar(Grupo grupo, Usuario usuario) throws RemoteException, NotBoundException{
+     public static void encaminhar(Grupo grupo) throws RemoteException, NotBoundException{
 
         EventBus client = new EventBusClient();
         client.on(grupo.toString(), new ListenerImpl() {
             @Override
             public void onEvent(Mensagem mensagem) throws RemoteException {
-               if((!mensagem.getOrigem().equals(usuario)) && 
-                       (!mensagem.getConteudo().equals("")) &&
-                      (!mensagem.getConteudo().equals("end")) && usuario.isLogado()){
                 System.out.println(mensagem);
                }
-            }
+            
         });
     }
     

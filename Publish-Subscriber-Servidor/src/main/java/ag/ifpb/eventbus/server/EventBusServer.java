@@ -10,9 +10,12 @@ import java.util.Map;
 import ag.ifpb.eventbus.shared.EventBus;
 import ag.ifpb.eventbus.shared.Listener;
 import ag.ifpb.eventbus.shared.Mensagem;
+import ag.ifpb.eventbus.shared.MensagemResultado;
+import ag.ifpb.eventbus.shared.sender.IServerApp;
+import java.util.UUID;
 
 @SuppressWarnings("serial")
-public class EventBusServer extends UnicastRemoteObject implements EventBus {
+public class EventBusServer extends UnicastRemoteObject implements EventBus, IServerApp  {
 //Esse Map representa para cada um de seus elementos basicamente um TOPICO e sua lista 
 //de inscritos 
 
@@ -58,5 +61,15 @@ public class EventBusServer extends UnicastRemoteObject implements EventBus {
             listener.onEvent(mensagem);
         }
     }
+ @Override
+    public MensagemResultado print(Mensagem msg) throws RemoteException {
 
+        String id = String.valueOf(UUID.randomUUID());
+        MensagemResultado result = new MensagemResultado(msg.getId(), id, msg.getConteudo(),msg.getOrigem(),msg.getGrupo());
+        //
+        System.out.println(msg);
+        //
+        return result;
+
+    }
 }

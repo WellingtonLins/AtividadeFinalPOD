@@ -1,14 +1,18 @@
 package ag.ifpb.eventbus.teste;
 
+import ag.ifpb.eventbus.shared.EventBus;
 import ag.ifpb.eventbus.shared.Grupo;
 import java.rmi.RemoteException;
 
 import ag.ifpb.eventbus.shared.Mensagem;
 import ag.ifpb.eventbus.shared.Usuario;
+import ag.ifpb.eventbus.shared.sender.ISender;
 import java.rmi.NotBoundException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.Scanner;
 
-public class NotifierClient {
+public class Main {
 
     public static void main(String[] args) throws RemoteException, NotBoundException {
         Scanner scanner = new Scanner(System.in);
@@ -22,7 +26,7 @@ public class NotifierClient {
 
         Usuario usuario1 = dao.logar(nome, Senha);
         usuario1.setLogado(Boolean.TRUE);
-       
+
         if (usuario1 == null) {
             System.err.println("Usuario não existe");
             System.exit(0);
@@ -57,7 +61,7 @@ public class NotifierClient {
 
         } while (bandeira);
 
-        GerenciadorDeMensagem.encaminhar(grupo, usuario1);
+//        GerenciadorDeMensagem.encaminhar(grupo, usuario1);
         String msn = "";
 
         System.out.println("Digite a mensagem");
@@ -70,15 +74,21 @@ public class NotifierClient {
             if (msn.equals("end")) {
 
                 usuario1.setLogado(false);
+                System.out.println("Voce saiu da aplicação");
+                break;
             }
             Mensagem mensagem = new Mensagem(String.valueOf(usuario1.hashCode()), msn, usuario1, grupo);
-            EventBusClient client = new EventBusClient();
-            client.fire(mensagem);
-            
+            try {
+                Registry registry = LocateRegistry.getRegistry(10990);
+                ISender sender = (ISender) registry.lookup("Sender");
+                if ((!mensagem.getConteudo().equals(""))
+                        && (!mensagem.getConteudo().equals("end"))) {
+                    sender.sendMessage(mensagem);
+                }
+            } catch (Exception ex) {
+                System.out.println("Erro ao tentar eviar a mensagem" + ex);
+            }
         } while (!msn.equals("end"));
-        if (msn.equals("end")) {
-            
-            System.out.println("Voce saiu da aplicação");
-        }
+
     }
 }
