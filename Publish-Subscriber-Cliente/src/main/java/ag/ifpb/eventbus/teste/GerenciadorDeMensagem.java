@@ -24,7 +24,7 @@ public class GerenciadorDeMensagem {
             public void onEvent(Mensagem mensagem) throws RemoteException {
                if((!mensagem.getOrigem().equals(usuario)) && 
                        (!mensagem.getConteudo().equals("")) &&
-                       !mensagem.getConteudo().equals("end")){
+                      (!mensagem.getConteudo().equals("end")) && usuario.isLogado()){
                 System.out.println(mensagem);
                }
             }

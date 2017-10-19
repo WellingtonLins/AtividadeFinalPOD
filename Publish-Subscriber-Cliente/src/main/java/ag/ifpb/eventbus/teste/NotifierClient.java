@@ -22,10 +22,13 @@ public class NotifierClient {
         System.out.println("Notificando o cliente!");
 
         Usuario usuario1 = dao.logar(nome, Senha);
+        usuario1.setLogado(Boolean.TRUE);
+       
         if (usuario1 == null) {
             System.err.println("Usuario não existe");
             System.exit(0);
         }
+
         Grupo grupo = null;
         boolean bandeira = true;
         do {
@@ -61,12 +64,21 @@ public class NotifierClient {
         System.out.println("Digite a mensagem");
         do {
             msn = scanner.nextLine();
+//            if (msn.equals("end")) {
+//                System.out.println("Voce saiu da aplicação");
+//                System.exit(0);
+//            }
+            if (msn.equals("end")) {
+
+                usuario1.setLogado(false);
+            }
             Mensagem mensagem = new Mensagem(String.valueOf(usuario1.hashCode()), msn, usuario1, grupo);
             EventBusClient client = new EventBusClient();
             client.fire(mensagem);
-
+            
         } while (!msn.equals("end"));
         if (msn.equals("end")) {
+            
             System.out.println("Voce saiu da aplicação");
         }
     }

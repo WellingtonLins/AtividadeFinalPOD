@@ -13,20 +13,20 @@ public class Usuario implements Comparable<Usuario>, Serializable {
     private long id;
     private String nome;
     private String senha;
+    private boolean logado = false;
 
     public Usuario() {
     }
 
-    public Usuario(String nome, String senha) {
-        this.nome = nome;
-        this.senha = senha;
-    }
+
 
     public Usuario(long id, String nome, String senha) {
         this.id = id;
         this.nome = nome;
         this.senha = senha;
+        this.logado = logado;
     }
+    
 
     public long getId() {
         return id;
@@ -52,9 +52,25 @@ public class Usuario implements Comparable<Usuario>, Serializable {
         this.senha = senha;
     }
 
+    public boolean isLogado() {
+        return logado;
+    }
+
+    public void setLogado(boolean logado) {
+        this.logado = logado;
+    }
+
+    
+    
+//    @Override
+//    public String toString() {
+//        return "id=" + id + ", nome=" + nome + ", senha=" + senha + "\n";
+//    }
+    
+
     @Override
     public String toString() {
-        return "id=" + id + ", nome=" + nome + ", senha=" + senha + "\n";
+        return "id=" + id + ", nome=" + nome + ", senha=" + senha + ", logado=" + logado + "\n";
     }
 
     @Override
