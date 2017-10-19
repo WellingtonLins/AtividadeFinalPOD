@@ -5,7 +5,6 @@ import java.rmi.RemoteException;
 
 import ag.ifpb.eventbus.shared.Mensagem;
 import ag.ifpb.eventbus.shared.Usuario;
-import ag.ifpb.eventbus.shared.impl.EventBusClient;
 import java.rmi.NotBoundException;
 import java.util.Scanner;
 
