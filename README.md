@@ -27,5 +27,6 @@ Foi criado o modulo de chat usando RMI e os padrao arquitetural  barramento de e
 ### Branch garantia
 
 Foram criados os modulos sender e receiver para enviar e receber manesagens usando RMI.
+Ainda não esta consolidado, apenas em fase de desenvolvimento
 
 
