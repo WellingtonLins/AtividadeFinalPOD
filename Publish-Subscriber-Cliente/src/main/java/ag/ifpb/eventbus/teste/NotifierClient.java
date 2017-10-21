@@ -8,6 +8,7 @@ import ag.ifpb.eventbus.shared.Usuario;
 import ag.ifpb.eventbus.shared.impl.EventBusClient;
 import java.rmi.NotBoundException;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class NotifierClient {
 
@@ -72,7 +73,9 @@ public class NotifierClient {
 
                 usuario1.setLogado(false);
             }
-            Mensagem mensagem = new Mensagem(String.valueOf(usuario1.hashCode()), msn, usuario1, grupo);
+                String uuid = String.valueOf(UUID.randomUUID());
+           
+            Mensagem mensagem = new Mensagem(uuid, msn, usuario1, grupo);
             EventBusClient client = new EventBusClient();
             client.fire(mensagem);
             
