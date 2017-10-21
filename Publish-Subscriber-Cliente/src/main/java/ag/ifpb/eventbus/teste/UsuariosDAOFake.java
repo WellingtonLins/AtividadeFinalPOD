@@ -16,7 +16,7 @@ public class UsuariosDAOFake {
     public UsuariosDAOFake() {
         usariosCadastrados = new TreeSet<>();
 
-          Usuario kiko = new Usuario(1, "kiko", "123");
+        Usuario kiko = new Usuario(1, "kiko", "123");
         Usuario chaves = new Usuario(2, "chaves", "123");
         Usuario chiquinha = new Usuario(3, "chiquinha", "123");
         Usuario ionhonho = new Usuario(4, "ionhonho", "123");
@@ -41,7 +41,7 @@ public class UsuariosDAOFake {
     }
 
     public Set<Usuario> todos() {
-       return usariosCadastrados;
+        return usariosCadastrados;
     }
 
     public Usuario buscar(Usuario u) {
